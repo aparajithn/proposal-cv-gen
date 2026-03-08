@@ -1,36 +1,110 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProposalCV - Consulting Proposal CV Generator
 
-## Getting Started
+> AI-powered CV tailoring for RFP responses
 
-First, run the development server:
+## Problem
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Small and mid-sized consulting firms spend **12+ hours per proposal** manually creating customized consultant CVs for RFP responses. ProposalCV solves this by:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Storing consultant profiles centrally
+- AI-tailoring project descriptions to match RFP keywords
+- Generating clean, client-ready CVs in seconds
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Tech Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Frontend:** Next.js 15 (App Router) + TypeScript + Tailwind CSS + shadcn/ui
+- **Backend:** Supabase (Postgres + Auth)
+- **AI:** OpenAI GPT-4o for description tailoring
+- **PDF:** Puppeteer for server-side rendering
+- **Deployment:** Vercel (frontend) + Supabase (database)
 
-## Learn More
+## Features
 
-To learn more about Next.js, take a look at the following resources:
+1. **Consultant Profile Database**
+   - Add/edit consultants with skills, certifications
+   - Manage project history with multiple description variants
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **AI CV Generator**
+   - Select consultant and paste RFP keywords
+   - AI tailors project descriptions to match requirements
+   - Preview before downloading
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Export & Tracking**
+   - Download as PDF (clean format)
+   - Track which CVs were sent for which RFP
 
-## Deploy on Vercel
+## Setup
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js 18+
+- Supabase account
+- OpenAI API key
+
+### Installation
+
+1. Clone the repo:
+   ```bash
+   git clone https://github.com/aparajithn/proposal-cv-gen.git
+   cd proposal-cv-gen
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up Supabase:
+   - Create a new project at [supabase.com](https://supabase.com)
+   - Run the migration in `supabase/migrations/001_initial_schema.sql`
+   - Copy your project URL and anon key
+
+4. Create `.env.local`:
+   ```bash
+   cp .env.example .env.local
+   ```
+
+5. Add environment variables:
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=your-project-url.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+   OPENAI_API_KEY=your-openai-api-key
+   ```
+
+6. Run the development server:
+   ```bash
+   npm run dev
+   ```
+
+7. Open [http://localhost:3000](http://localhost:3000)
+
+## Deployment
+
+### Vercel
+
+1. Push to GitHub
+2. Import project in Vercel
+3. Add environment variables
+4. Deploy
+
+## Database Schema
+
+- `consultants` - Consultant profiles (name, title, skills, certifications)
+- `projects` - Project history with multiple description variants
+- `cv_exports` - Tracking log of generated CVs
+
+## Roadmap
+
+- [ ] Word document generation (2-column table, bullet points)
+- [ ] Custom branding/templates
+- [ ] Team collaboration features
+- [ ] CRM integrations
+- [ ] Version control and approval workflows
+
+## License
+
+MIT
+
+## Author
+
+Built for consulting firms by [aparajithn](https://github.com/aparajithn)

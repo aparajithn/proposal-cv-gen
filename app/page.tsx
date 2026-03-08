@@ -1,65 +1,119 @@
-import Image from "next/image";
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { FileText, Users, Download, Zap } from 'lucide-react';
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen flex flex-col">
+      {/* Hero Section */}
+      <section className="flex-1 flex items-center justify-center bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="container mx-auto px-8 py-16 text-center">
+          <h1 className="text-5xl font-bold mb-6">
+            Stop Wasting 12 Hours Per Proposal on CVs
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
+            Generate client-ready consultant CVs in seconds. Store profiles once,
+            tailor them instantly for every RFP.
           </p>
+          <div className="flex gap-4 justify-center">
+            <Link href="/dashboard">
+              <Button size="lg" className="text-lg px-8">
+                Get Started
+                <Zap className="ml-2 h-5 w-5" />
+              </Button>
+            </Link>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Features */}
+      <section className="py-16 bg-background">
+        <div className="container mx-auto px-8">
+          <h2 className="text-3xl font-bold text-center mb-12">How It Works</h2>
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center">
+              <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Users className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">1. Add Consultants</h3>
+              <p className="text-muted-foreground">
+                Upload profiles with skills, certifications, and project history
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <FileText className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">2. Paste RFP Keywords</h3>
+              <p className="text-muted-foreground">
+                AI tailors project descriptions to match RFP requirements
+              </p>
+            </div>
+
+            <div className="text-center">
+              <div className="bg-primary/10 rounded-full w-16 h-16 flex items-center justify-center mx-auto mb-4">
+                <Download className="h-8 w-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">3. Download CVs</h3>
+              <p className="text-muted-foreground">
+                Get clean PDFs or Word docs in seconds
+              </p>
+            </div>
+          </div>
         </div>
-      </main>
+      </section>
+
+      {/* Problem Section */}
+      <section className="py-16 bg-muted/30">
+        <div className="container mx-auto px-8 max-w-4xl">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            The Proposal CV Nightmare
+          </h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h3 className="font-semibold mb-3 text-red-600">❌ Before</h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• Copy-pasting from old proposals</li>
+                <li>• Reformatting to match client templates</li>
+                <li>• Outdated information slipping through</li>
+                <li>• 12+ hours per proposal building CVs</li>
+              </ul>
+            </div>
+
+            <div>
+              <h3 className="font-semibold mb-3 text-green-600">✅ After</h3>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• Store consultant profiles in one place</li>
+                <li>• Auto-tailor to match RFP keywords</li>
+                <li>• Generate clean, professional CVs</li>
+                <li>• Track what was sent to which client</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-16 bg-primary text-primary-foreground">
+        <div className="container mx-auto px-8 text-center">
+          <h2 className="text-3xl font-bold mb-6">
+            Ready to save 12 hours per proposal?
+          </h2>
+          <Link href="/dashboard">
+            <Button size="lg" variant="secondary" className="text-lg px-8">
+              Start Building CVs
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-8 bg-background border-t">
+        <div className="container mx-auto px-8 text-center text-sm text-muted-foreground">
+          <p>ProposalCV - AI-powered consulting proposal CVs</p>
+        </div>
+      </footer>
     </div>
   );
 }
