@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { supabase } from '@/lib/supabase';
 import { Consultant } from '@/types';
@@ -13,7 +13,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 
-export default function NewProjectPage() {
+function NewProjectForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const consultantIdParam = searchParams.get('consultantId');
@@ -216,5 +216,13 @@ export default function NewProjectPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+export default function NewProjectPage() {
+  return (
+    <Suspense fallback={<div className="container mx-auto p-8">Loading...</div>}>
+      <NewProjectForm />
+    </Suspense>
   );
 }
